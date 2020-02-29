@@ -178,7 +178,7 @@ void readFile(std::vector<Studentas> &printeris, int k, int pasirinkimas){
     }
     catch(std::ios_base::failure& fail){
         std::cerr <<"\n Failas -  " << file << "  - nerastas; ikelkite faila i programos vykdymo aplanka ir paspauskite Enter mygtuka"; 
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        std::cin.ignore();
         std::cin.get();
         readFile(printeris, k, pasirinkimas);
     }
