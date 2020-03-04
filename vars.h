@@ -7,6 +7,9 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <chrono>
+
 
 
 struct Studentas {
@@ -19,7 +22,13 @@ struct Studentas {
 };
 
 
+double diffclock( clock_t , clock_t);
+
 void bubbleSort(Studentas , int );
+
+int digitCounter(int);
+
+void random_gen();
 
 void compare(Studentas*);
 
@@ -37,7 +46,11 @@ void galutinioSkaiciavimas(Studentas&, int&);
 
 bool comparation(Studentas&, Studentas&);
 
-void print(std::vector<Studentas> , int );
+void splitOutput(std::vector<Studentas> &, std::vector<Studentas>& , std::vector<Studentas>& );
+
+void print(std::vector<Studentas> , std::vector<Studentas>, std::vector<Studentas>, int );
+
+void outputToFile(std::vector<Studentas>, std::vector<Studentas>, int);
 
 void readFile(std::vector<Studentas>&, int, int);
 
