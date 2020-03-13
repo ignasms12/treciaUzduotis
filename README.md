@@ -1,9 +1,11 @@
-#v0.5 versija
+v0.5 versija
+---
 ***
-###Konteinerių testavimas
+Konteinerių testavimas
+===
 *laikai atvaizduoti milisekundėmis*
 
-####Vektoriai:
+**Vektoriai:**
 
 <center>
 
@@ -14,7 +16,7 @@
 
 </center>
 
-####Sąrašai:
+**Sąrašai:**
 
 <center>
 
@@ -25,7 +27,7 @@
 
 </center>
 
-####Dekos:
+**Dekos:**
 
 <center>
 
@@ -38,7 +40,7 @@
 
 
 
-####Kompiuterio specifikacijos:
+**Kompiuterio specifikacijos:**
 
 **CPU** - Intel Core m3-7Y32 1.2 GHz Dual-Core
 
