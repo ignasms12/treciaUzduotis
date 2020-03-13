@@ -41,6 +41,8 @@
 ####Kompiuterio specifikacijos:
 
 **CPU** - Intel Core m3-7Y32 1.2 GHz Dual-Core
+
 **RAM** - 8 GB 1867 MHz LPDDR3
+
 **Storage Device** - SSD
 
