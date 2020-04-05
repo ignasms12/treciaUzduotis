@@ -1,3 +1,5 @@
+
+#include "vars.h"
 #include <cmath>
 #include <iomanip>
 #include <iostream>
@@ -115,6 +117,7 @@ void naujasIrasas(char *rankis, int *numeriukas){
   numeriukas++;
 }
 
+
 void galutinioSkaiciavimas(Studentas &rodiklis, int &porankis){
 
   int suma = 0;
@@ -150,15 +153,29 @@ bool comparation(Studentas &a, Studentas &b){
 
 int main() {
   int *rod;
-
-  vector<Studentas> studentai;
-  Studentas *rodykle;
-
+  std::vector<Studentas> studentai;
   int pasirinkimas;
-  int *rodyklyte = &pasirinkimas;
-
   char taipArbaNe;
   int i = 0;
+
+  int ivedimoPorank;
+
+  std::cout << "Pasirinkite kas turetu buti isvedama: Vidurkis ar Mediana: ";
+  ivedimas(pasirinkimas);
+
+  
+  std::cout << "Kaip ivesite irasus:" << std::endl;
+  std::cout << "0 - Irasai ivedami ranka" << std::endl;
+  std::cout << "1 - Irasai nuskaitomi is failo" << std::endl;
+
+  std::cin >> ivedimoPorank;
+
+  ivedimoPorankis(studentai, pasirinkimas, i, ivedimoPorank, taipArbaNe);
+
+  sort(studentai.begin(), studentai.end(), comparation);
+  
+  print(studentai, pasirinkimas);
+  
   string stop = "uztenka";
   string stop2 = "Uztenka";
 
@@ -334,4 +351,5 @@ int main() {
     cout << fixed << setprecision(2) << studentai[sup].bendras_pazymys << endl;
   }
   cout << endl;
+
 }
