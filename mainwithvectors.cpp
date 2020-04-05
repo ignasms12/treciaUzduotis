@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <climits>
+#include <fstream>
 
 using namespace std;
 
@@ -38,20 +39,6 @@ void compare(Studentas *pavyzdys) {
     cout << "Iveskite uzduociu kieki: ";
     cin >> pavyzdys->n;
     compare(pavyzdys);
-  }
-}
-
-void lengthCheck(int skaicius, string eilute) {
-  if (eilute.length() < skaicius) {
-    for (int a = 0; a < skaicius - eilute.length() + 5; a++) {
-      cout << " ";
-    }
-  } else if (eilute.length() > skaicius) {
-    for (int a = 0; a < eilute.length() + 5; a++) {
-      cout << " ";
-    }
-  } else {
-    cout << "     ";
   }
 }
 
@@ -128,6 +115,39 @@ void naujasIrasas(char *rankis, int *numeriukas){
   numeriukas++;
 }
 
+void galutinioSkaiciavimas(Studentas &rodiklis, int &porankis){
+
+  int suma = 0;
+  for (int a = 0; a < rodiklis.nd_rezultatas.size() ; a++) {
+    suma += rodiklis.nd_rezultatas[a];
+  }
+
+  double mediana;
+  if (porankis == 1) {
+
+    if (rodiklis.n % 2 != 0) {
+      int abc = round(rodiklis.n / 2);
+      mediana = rodiklis.nd_rezultatas[abc];
+    }
+
+    else if (rodiklis.n % 2 == 0) {
+      mediana = (rodiklis.nd_rezultatas[rodiklis.n / 2 - 1] + rodiklis.nd_rezultatas[rodiklis.n / 2])/2;
+    }
+    rodiklis.bendras_pazymys = (0.4 * mediana) + (0.6 * rodiklis.egzamino_rezultatas);
+  }
+
+  else if(porankis == 0){
+    rodiklis.bendras_pazymys = (0.4 * ( suma / rodiklis.nd_rezultatas.size() ) ) + (0.6 * rodiklis.egzamino_rezultatas );
+  }
+
+}
+
+bool comparation(Studentas &a, Studentas &b){
+  return (a.name < b.name || (a.name == b.name && a.surname < b.surname));
+}
+
+
+
 int main() {
   int *rod;
 
@@ -142,127 +162,151 @@ int main() {
   string stop = "uztenka";
   string stop2 = "Uztenka";
 
-  studentai.push_back(Studentas());
   
   cout << "Pasirinkite kas turetu buti isvedama: Vidurkis ar Mediana: ";
   ivedimas(rodyklyte);
 
-  cout << "Iveskite studento varda" << endl;
-  cin >> studentai[i].name >> studentai[i].surname;
+  int ivedimoPorankis;
+  cout << "Kaip ivesite irasus:" << endl;
+  cout << "0 - Irasai ivedami ranka" << endl;
+  cout << "1 - Irasai nuskaitomi is failo" << endl;
 
-  char rodyklius;
-  int rodiklius = 0;
+  cin >> ivedimoPorankis;
 
-  while ( i >= 0 ) {
-    char *porankis;
-    if (i > 0){
-      int *skaiciuks;
-      skaiciuks = &rodiklius;
-      porankis = &rodyklius;
-      naujasIrasas(porankis, skaiciuks);
+  string word;
+  int index = 0;
 
-      if(rodyklius == 'y' || rodyklius == 'Y'){
-        studentai.push_back(Studentas());
-        cout << "Iveskite studento varda" << endl;
-        cin >> studentai[i].name;
-        cin >> studentai[i].surname;
+  if(ivedimoPorankis == 0){
+      studentai.push_back(Studentas());
+      cout << "Iveskite studento varda" << endl;
+      cin >> studentai[i].name >> studentai[i].surname;
+
+      char rodyklius;
+      int rodiklius = 0;
+
+      while ( i >= 0 ) {
+        char *porankis;
+        if (i > 0){
+          int *skaiciuks;
+          skaiciuks = &rodiklius;
+          porankis = &rodyklius;
+          naujasIrasas(porankis, skaiciuks);
+
+          if(rodyklius == 'y' || rodyklius == 'Y'){
+            studentai.push_back(Studentas());
+            cout << "Iveskite studento varda" << endl;
+            cin >> studentai[i].name;
+            cin >> studentai[i].surname;
+          }
+          else if(rodyklius == 'n' || rodyklius == 'N'){
+            break;
+          }
+          else{
+            naujasIrasas(porankis, skaiciuks);
+          }
+        }
+
+        rodykle = &studentai[i];
+        cout << "Ar norite rezultatus sugeneruoti atsitiktinai ? Y/N" << endl;
+        cin >> taipArbaNe;
+
+        if (taipArbaNe == 'Y' || taipArbaNe == 'y') {
+
+          srand(time(0));
+          studentai[i].n = rand() % 15 + 1;
+          for (int a = 0; a < studentai[i].n; a++) {
+            studentai[i].nd_rezultatas.push_back(int());
+            studentai[i].nd_rezultatas[a] = rand() % 10 + 1;
+          }
+          studentai[i].egzamino_rezultatas = rand() % 10 + 1;
+          cout << endl;
+          cout << endl;
+          bubbleSort(studentai[i], studentai[i].n);
+          cout << "Namu darbu rezultatai: " << endl;
+          for (int a = 0; a < studentai[i].n; a++) {
+            cout << studentai[i].nd_rezultatas[a] << endl;
+          }
+          cout << endl;
+          cout << endl;
+          cout << "Egzamino rezultatas: " << endl;
+          cout << studentai[i].egzamino_rezultatas << endl;
+          cout << endl;
+        } 
+
+        else if (taipArbaNe == 'N' || taipArbaNe == 'n') {
+          cout << "Iveskite studento egzamino rezultata: " << endl;
+          input_result(rodykle);
+          cout << endl;
+
+          cout << "Iveskite studento namu darbu uzduociu kieki ir kiekvienos uzduoties ivertinima:"
+              << endl;
+          cout << endl;
+
+          cout << "Namu darbu uzduociu kiekis: ";
+
+          Studentas *rodyklele = &studentai[i];
+          validityCheck(rodyklele);
+          compare(rodyklele);  // jei n mazesnis uz 0, useriui metamas erroras
+          cout << endl;
+
+          cout << "Namu darbu uzduociu ivertinimai: " << endl << endl;
+          Studentas *wazeep;
+          wazeep = &studentai[i];
+          input(wazeep);
+
+        }
+
+        else {
+          cout << "Iveskite Y arba N:" << endl;
+          cin >> taipArbaNe;
+        }
+
+        
+
+        
+        galutinioSkaiciavimas(studentai[i], pasirinkimas);
+        
+        
+
+        
+
+
+        i++;
+        rodiklius = 0;
       }
-      else if(rodyklius == 'n' || rodyklius == 'N'){
-        break;
-      }
-      else{
-        naujasIrasas(porankis, skaiciuks);
-      }
-    }
-
-    rodykle = &studentai[i];
-    cout << "Ar norite rezultatus sugeneruoti atsitiktinai ? Y/N" << endl;
-    cin >> taipArbaNe;
-
-    if (taipArbaNe == 'Y' || taipArbaNe == 'y') {
-
-      srand(time(0));
-      studentai[i].n = rand() % 15 + 1;
-      for (int a = 0; a < studentai[i].n; a++) {
-        studentai[i].nd_rezultatas.push_back(int());
-        studentai[i].nd_rezultatas[a] = rand() % 10 + 1;
-      }
-      studentai[i].egzamino_rezultatas = rand() % 10 + 1;
-      cout << endl;
-      cout << endl;
-      bubbleSort(studentai[i], studentai[i].n);
-      cout << "Namu darbu rezultatai: " << endl;
-      for (int a = 0; a < studentai[i].n; a++) {
-        cout << studentai[i].nd_rezultatas[a] << endl;
-      }
-      cout << endl;
-      cout << endl;
-      cout << "Egzamino rezultatas: " << endl;
-      cout << studentai[i].egzamino_rezultatas << endl;
-      cout << endl;
-    } 
-
-    else if (taipArbaNe == 'N' || taipArbaNe == 'n') {
-      cout << "Iveskite studento egzamino rezultata: " << endl;
-      input_result(rodykle);
-      cout << endl;
-
-      cout << "Iveskite studento namu darbu uzduociu kieki ir kiekvienos uzduoties ivertinima:"
-           << endl;
-      cout << endl;
-
-      cout << "Namu darbu uzduociu kiekis: ";
-
-      Studentas *rodyklele = &studentai[i];
-      validityCheck(rodyklele);
-      compare(rodyklele);  // jei n mazesnis uz 0, useriui metamas erroras
-      cout << endl;
-
-      cout << "Namu darbu uzduociu ivertinimai: " << endl << endl;
-      Studentas *wazeep;
-      wazeep = &studentai[i];
-      input(wazeep);
-
-    }
-
-    else {
-      cout << "Iveskite Y arba N:" << endl;
-      cin >> taipArbaNe;
-    }
-
-    
-
-    int suma = 0;
-    for (int a = 0; a < studentai[i].nd_rezultatas.size() ; a++) {
-      suma += studentai[i].nd_rezultatas[a];
-      
-    }
-    
-    
-    
-
-    double mediana;
-    if (pasirinkimas == 1) {
-
-      if (studentai[i].n % 2 != 0) {
-        int abc = round(studentai[i].n / 2);
-        mediana = studentai[i].nd_rezultatas[abc];
-      }
-
-      else if (studentai[i].n % 2 == 0) {
-        mediana = (studentai[i].nd_rezultatas[studentai[i].n / 2 - 1] + studentai[i].nd_rezultatas[studentai[i].n / 2])/2;
-      }
-      studentai[i].bendras_pazymys = (0.4 * mediana) + (0.6 * studentai[i].egzamino_rezultatas);
-    }
-
-    else if(pasirinkimas == 0){
-      studentai[i].bendras_pazymys = (0.4 * ( suma / studentai[i].nd_rezultatas.size() ) ) + (0.6 * studentai[i].egzamino_rezultatas );
-    }
-
-
-    i++;
-    rodiklius = 0;
   }
+
+  
+
+  else if(ivedimoPorankis == 1){
+    string Value = "";
+    int count = 0;
+    ifstream failas("kursiokai.txt");
+    failas >> Value >> Value >> Value;
+    while(Value[0] == 'N'){
+      failas >> Value;
+      count++;
+    }
+    while(!failas.eof()){
+      studentai.push_back(Studentas());
+      failas >> studentai[i].name >> studentai[i].surname; 
+      for(int l = 0; l < count; l++){
+        studentai[i].nd_rezultatas.push_back(int());
+        failas >> studentai[i].nd_rezultatas[l];
+      } 
+      failas >> studentai[i].egzamino_rezultatas;
+      galutinioSkaiciavimas(studentai[i], pasirinkimas);
+      i++;
+      if(i%1000 == 0){
+        cout << i << endl;
+      }
+      }
+      failas.close();
+    
+  }
+
+  sort(studentai.begin(), studentai.end(), comparation);
+  
 
   cout << endl;
   cout << endl;
@@ -285,7 +329,7 @@ int main() {
     cout << endl;
     cout.width(15);
     cout << left << studentai[sup].name;
-    cout.width(15);
+    cout.width(20);
     cout << left << studentai[sup].surname;
     cout << fixed << setprecision(2) << studentai[sup].bendras_pazymys << endl;
   }
