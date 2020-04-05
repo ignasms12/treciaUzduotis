@@ -1,16 +1,7 @@
-# antraUzduotis
-Antra objektinio programavimo uzduotis
-=======
-v0.5 versija
----
-***
-Konteinerių testavimas
-===
-=======
 # Studentų pažymių skaičiavimo programa
 ## Versijos:
 ---
-  * #### v0.1
+  * ### v0.1
   1. Programa nuskaito įvestus duomenis:
   *Studentų vardus ir pavardes*
   *Namų darbų ir egzamino rezultatus*
@@ -24,19 +15,19 @@ Konteinerių testavimas
  Įkeltos dvi versijos: su vektoriais ir su dinaminiu masyvu
 
   ---
-  * #### v0.2
+  * ### v0.2
  **Pridėta:** 
  * studentų duomenu nuskaitymas iš failo,
  * surūšiuotas studentų irašų išvedimas
 
 ---
-  * #### v0.3
+  * ### v0.3
   **Atliktas refactoring'as:** 
   * funkcijų apsirašymai, naujų duomenų tipų įvedimai perkelti į header failą, 
   * įvestas išimčių valdymas
 
 ---
-  * #### v0.4
+  * ### v0.4
   **Pridėta:** 
 * failų generavimas (įvedamas namų darbų kiekis ir įrašų kiekis), 
 * išvedimo rūšiavimas pagal galutinį rezultatą (mažiau nei 5 - vargšiukai; 5 ir daugiau - kietekai),
@@ -44,9 +35,8 @@ Konteinerių testavimas
   *  [Nuoroda į programos veikimo analizę](https://github.com/ignasms12/antraUzduotis/releases/download/v0.4/v0.4.ataskaita.pdf)
 
 ---
-  * #### v0.5
+  * ### v0.5
   #### Konteinerių testavimas
->>>>>>> 2dd87270f2d61d081457cda7018f7858300c935e
 *laikai atvaizduoti milisekundėmis*
 
 **Vektoriai:**
@@ -83,12 +73,7 @@ Konteinerių testavimas
 </center>
 
 
-
-<<<<<<< HEAD
-**Kompiuterio specifikacijos:**
-=======
 #### Kompiuterio specifikacijos:
->>>>>>> 2dd87270f2d61d081457cda7018f7858300c935e
 
 **CPU** - Intel Core m3-7Y32 1.2 GHz Dual-Core
 
@@ -96,10 +81,8 @@ Konteinerių testavimas
 
 **Storage Device** - SSD
 
-<<<<<<< HEAD
-=======
 ---
-  * #### v1.0
+  * ### v1.0
   
 Pritaikytos dvi skirtingos studentų dalinimo į kategorijas strategijos:
 
