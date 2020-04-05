@@ -6,6 +6,47 @@ v0.5 versija
 ***
 Konteinerių testavimas
 ===
+=======
+# Studentų pažymių skaičiavimo programa
+## Versijos:
+---
+  * #### v0.1
+  1. Programa nuskaito įvestus duomenis:
+  *Studentų vardus ir pavardes*
+  *Namų darbų ir egzamino rezultatus*
+
+  2. Išveda studento galutinį balą
+
+  3. Galima pasirinkti galutinio balo skaičiavimo būdą: vidurkis arba mediana
+
+  4. Balai gali būti generuojami atsitiktinai
+
+ Įkeltos dvi versijos: su vektoriais ir su dinaminiu masyvu
+
+  ---
+  * #### v0.2
+ **Pridėta:** 
+ * studentų duomenu nuskaitymas iš failo,
+ * surūšiuotas studentų irašų išvedimas
+
+---
+  * #### v0.3
+  **Atliktas refactoring'as:** 
+  * funkcijų apsirašymai, naujų duomenų tipų įvedimai perkelti į header failą, 
+  * įvestas išimčių valdymas
+
+---
+  * #### v0.4
+  **Pridėta:** 
+* failų generavimas (įvedamas namų darbų kiekis ir įrašų kiekis), 
+* išvedimo rūšiavimas pagal galutinį rezultatą (mažiau nei 5 - vargšiukai; 5 ir daugiau - kietekai),
+* pridėta programos veikimo spartos matavimo galimybė (matuojama: failų kūrimo greitis, duomenų nuskaitymo iš failo greitis, studentų rūšiavimo greitis, surūšiuotų studentų išvedimo į failus greitis)
+  *  [Nuoroda į programos veikimo analizę](https://github.com/ignasms12/antraUzduotis/releases/download/v0.4/v0.4.ataskaita.pdf)
+
+---
+  * #### v0.5
+  #### Konteinerių testavimas
+>>>>>>> 2dd87270f2d61d081457cda7018f7858300c935e
 *laikai atvaizduoti milisekundėmis*
 
 **Vektoriai:**
@@ -43,7 +84,11 @@ Konteinerių testavimas
 
 
 
+<<<<<<< HEAD
 **Kompiuterio specifikacijos:**
+=======
+#### Kompiuterio specifikacijos:
+>>>>>>> 2dd87270f2d61d081457cda7018f7858300c935e
 
 **CPU** - Intel Core m3-7Y32 1.2 GHz Dual-Core
 
@@ -51,3 +96,48 @@ Konteinerių testavimas
 
 **Storage Device** - SSD
 
+<<<<<<< HEAD
+=======
+---
+  * #### v1.0
+  
+Pritaikytos dvi skirtingos studentų dalinimo į kategorijas strategijos:
+
+  * **1 strategija** - Bendro studentų konteinerio elementai rūšiuojami į du naujus konteinerius
+  * **2 strategija** - Bendro studentų konteinerio elementai, atitinkantys nustatyta sąlygą, yra perkeliami į naują konteinerį ir pašalinami iš originalaus konteinerio
+
+*Laikai atvaizduoti milisekundėmis*
+  **1 strategija**
+
+  | Duomenų tipas | Nuskaitymas iš failo | Skirstymas į kategorijas |
+|:-------------:|:--------------------:|:------------------------:|
+|   Vektoriai   |          65          |             9            |
+|      Deka     |          73          |            34            |
+|    List'as    |          66          |            393           |
+
+**2 strategija**
+
+| Duomenų tipas | Nuskaitymas iš failo | Skirstymas į kategorijas |
+|:-------------:|:--------------------:|:------------------------:|
+|   Vektoriai   |          65          |           4302           |
+|      Deka     |          74          |           2846           |
+|    List'as    |          67          |            284           |
+
+## Naudojimosi instrukcija:
+1. Atsidarę šį puslapį, spauskite "Clone or Download" mygtuką, kad parsisiųstumėte programą
+2. Parsisiuntę Zip failą, išarchyvuokite jį sau patogiu įrankiu
+3. Atsidarykite komandinės eilutės įrankį ir nueikite į išarchyvuotą aplanką
+4. Išarchyvuotame aplanke naudokite vieną iš šių komandų, kad paruoštumėte programą naudojimui:
+    * **make all** - sukompiliuoti visas programas
+    * **make deque** - sukompiliuoti a ir b strategijų programas, naudojančias deką
+    * **make list** - sukompiliuoti a ir b strategijų programas, naudojančias list'us
+    * **make vector** - sukompiliuoti a ir b strategijų programas, naudojančias vektorius
+5. Naudokite vieną šių komandų programos paleidimui:
+    * **make run_deque_a** - paleisti a strategijos programą, naudojančią deką
+    * **make run_deque_b** - paleisti b strategijos programą, naudojančią deką
+    * **make run_list_a** - paleisti a strategijos programą, naudojančią listus
+    * **make run_list_b** - paleisti b strategijos programą, naudojančią listus
+    * **make run_vector_a** - paleisti a strategijos programą, naudojančią vektorius
+    * **make run_vector_b** - paleisti b strategijos programą, naudojančią vektorius
+6. Komanda skirta aplanko išvalymui:
+    * **make clear** - išvalyti visus tekstinius ir paleidimo failus
