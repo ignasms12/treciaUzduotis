@@ -102,7 +102,7 @@ Pritaikytos dvi skirtingos studentų dalinimo į kategorijas strategijos:
 **2 strategija**
 
 *laikai atvaizduoti milisekundėmis*
-
+c
 | Duomenų tipas | Nuskaitymas iš failo | Skirstymas į kategorijas |
 |:-------------:|:--------------------:|:------------------------:|
 |   Vektoriai   |          65          |           4302           |
