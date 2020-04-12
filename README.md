@@ -89,8 +89,9 @@ Pritaikytos dvi skirtingos studentų dalinimo į kategorijas strategijos:
   * **1 strategija** - Bendro studentų konteinerio elementai rūšiuojami į du naujus konteinerius
   * **2 strategija** - Bendro studentų konteinerio elementai, atitinkantys nustatyta sąlygą, yra perkeliami į naują konteinerį ir pašalinami iš originalaus konteinerio
 
-*Laikai atvaizduoti milisekundėmis*
   **1 strategija**
+  
+  *laikai atvaizduoti milisekundėmis*
 
   | Duomenų tipas | Nuskaitymas iš failo | Skirstymas į kategorijas |
 |:-------------:|:--------------------:|:------------------------:|
@@ -100,27 +101,47 @@ Pritaikytos dvi skirtingos studentų dalinimo į kategorijas strategijos:
 
 **2 strategija**
 
+*laikai atvaizduoti milisekundėmis*
+
 | Duomenų tipas | Nuskaitymas iš failo | Skirstymas į kategorijas |
 |:-------------:|:--------------------:|:------------------------:|
 |   Vektoriai   |          65          |           4302           |
 |      Deka     |          74          |           2846           |
 |    List'as    |          67          |            284           |
 
+---
+  * ### v1.1
+
+* Sukurta nauja git repozitorija
+* Programos kodas perrašytas, pakeitus struktūras klasėmis
+
+**Programos veikimo laikai, naudojant efektyviausią strategiją ir konteinerį:**
+
+*laikai atvaizduoti milisekundėmis*
+
+|            	| 100 000 įrašų 	| 1 000 000 įrašų 	|
+|:----------:	|:-------------:	|:---------------:	|
+| Struktūros 	|      2138     	|      22 363     	|
+|   Klasės   	|      2154     	|      21 916     	|
+
+**Programos veikimo laikai naudojant skirtingus optimizavimo flag'us:**
+
+*laikai atvaizduoti milisekundėmis*
+
+|    	| 100 000 įrašų 	| 1 000 000 įrašų 	|
+|:--:	|:-------------:	|:---------------:	|
+| O1 	|     1 769     	|      18 267     	|
+| O2 	|     1 569     	|      16 001     	|
+| O3 	|     1 616     	|      16 436     	|
+
+
 ## Naudojimosi instrukcija:
 1. Atsidarę šį puslapį, spauskite "Clone or Download" mygtuką, kad parsisiųstumėte programą
 2. Parsisiuntę Zip failą, išarchyvuokite jį sau patogiu įrankiu
 3. Atsidarykite komandinės eilutės įrankį ir nueikite į išarchyvuotą aplanką
-4. Išarchyvuotame aplanke naudokite vieną iš šių komandų, kad paruoštumėte programą naudojimui:
-    * **make all** - sukompiliuoti visas programas
-    * **make deque** - sukompiliuoti a ir b strategijų programas, naudojančias deką
-    * **make list** - sukompiliuoti a ir b strategijų programas, naudojančias list'us
-    * **make vector** - sukompiliuoti a ir b strategijų programas, naudojančias vektorius
-5. Naudokite vieną šių komandų programos paleidimui:
-    * **make run_deque_a** - paleisti a strategijos programą, naudojančią deką
-    * **make run_deque_b** - paleisti b strategijos programą, naudojančią deką
-    * **make run_list_a** - paleisti a strategijos programą, naudojančią listus
-    * **make run_list_b** - paleisti b strategijos programą, naudojančią listus
-    * **make run_vector_a** - paleisti a strategijos programą, naudojančią vektorius
-    * **make run_vector_b** - paleisti b strategijos programą, naudojančią vektorius
+4. Išarchyvuotame aplanke naudokite šią komandą, kad paruoštumėte programą naudojimui:
+    * **make**
+5. Naudokite šią komandą programos paleidimui:
+    * **make run** 
 6. Komanda skirta aplanko išvalymui:
-    * **make clear** - išvalyti visus tekstinius ir paleidimo failus
+    * **make clear**

@@ -1,0 +1,514 @@
+#include "vars.h"
+
+
+void bubbleSort(std::vector<int> nd, int n) {
+	bool exchanges;
+	do {
+		exchanges = false;
+		for (int c = 0; c < n - 1; c++) {
+			if (nd[c] > nd[c+1]) {
+				int temp = nd[c];
+				nd[c] = nd[c];
+				nd[c+1] = temp;
+				exchanges = true;
+			}
+		}
+	} while (exchanges);
+}
+
+template <typename T>
+
+void validityCheck(T &n) {
+	std::cin >> n;
+	while (std::cin.fail()) {
+		std::cin.clear();
+		std::cin.ignore(INT_MAX, '\n');
+		std::cout << "Neteisinga reiksme, iveskite skaiciu: " << std::endl;
+		std::cin >> n;
+	}
+}
+
+int digitCounter(int no){
+		int a = 0;
+		if(no == -1){
+				a = 0;
+		}
+		else if(no==0){
+				no=1;
+		}
+		while(no>0){
+				no=no/10;
+				a++;
+		}
+		return a;
+}
+
+void random_gen(){
+		int n, kiekis;
+		int temp = -1;
+		std::string pavadinimas;
+		std::string name = "Vardas";
+		std::string surname = "Pavarde";
+		std::string nd = "ND";
+		srand(time(NULL));
+		std::cout << "Iveskite namu darbu kieki: ";
+		std::cin >> n;
+		std::cout << "\nIveskite irasu kieki: ";
+		std::cin >> kiekis;
+		std::cout << std::endl;
+		std::cout << "Iveskite naujo failo pavadinima: " << std::endl;
+		std::cin >> pavadinimas;
+		std::cout << std::endl;
+
+		auto paradzia = std::chrono::steady_clock::now( );
+
+		std::ofstream failas;
+		failas.open(pavadinimas + ".txt");
+		failas << std::setw(20) << std::left << name << std::setw(20) << std::left << surname;
+		for(int i=1; i< n+1; i++){
+				failas << std::setw(5) << std::right << nd << i ;
+		}
+		failas << std::setw(10) << std::right << "Egz_Rez" << std::endl;
+		for(int i=0; i<kiekis; i++){
+				failas << std::right <<  name << i;
+
+				failas << std::setw(20-digitCounter(i)) << std::right;
+
+				failas << surname << i;
+
+				for(int j=0; j<n; j++){
+						
+						if(j==0){
+								failas << std::setw(18-digitCounter(i)) << std::right;
+						}
+						else{
+								failas << std::setw(7) << std::right;
+								}
+						
+						failas  << rand() % 10 + 1;
+				}
+				
+				failas << std::setw(6) << std::right << rand() % 10 + 1 ;
+				if(i!=kiekis-1){
+					failas << std::endl;
+				}
+		}
+
+		auto pbaiga = std::chrono::duration_cast<std::chrono::milliseconds>( std::chrono::steady_clock::now( ) - paradzia );
+
+		std::cout << "Failo generavimas uztruko: " << pbaiga.count() << " ms" << std::endl;
+}
+
+void ivedimas(int &pvz) {
+	std::string pavyzdys;
+	std::cin >> pavyzdys;
+	if (pavyzdys == "Vidurkis" || pavyzdys == "vidurkis") {
+		pvz = 0;
+	} else if (pavyzdys == "Mediana" || pavyzdys == "mediana") {
+		pvz = 1;
+	} else {
+		std::cout << "Neteisingai ivedete, iveskite Vidurkis arba Mediana: ";
+		ivedimas(pvz);
+	}
+}
+
+void Studentas :: input() {
+	int indeksas = 0;
+	while (indeksas <  n) {
+		 nd_rezultatas.push_back(int());
+		std::cout << indeksas + 1 << " - ";
+		validityCheck( nd_rezultatas[indeksas]);
+		try {
+			if( nd_rezultatas[indeksas] > 10 ||  nd_rezultatas[indeksas] < 0){
+				throw nd_rezultatas[indeksas];
+			}
+			else{
+				indeksas++;
+			}
+		}
+		catch(int x){
+			std::cout <<"\n" << x << " netelpa i intervala nuo 0 iki 10";
+		}
+
+	}
+	indeksas = 0;
+}
+
+void naujasIrasas(char &rankis, int &numeriukas){
+	if(numeriukas == 0){
+		std::cout << "Ar norite prideti nauja irasa ? (Y/N)" << std::endl;
+	}
+	else if(numeriukas > 0){
+		std::cout << "Neteisingai ivedete - iveskite Y arba N" << std::endl;
+	}
+	std::cin >> rankis;
+	numeriukas++;
+}
+
+void Studentas :: galutinioSkaiciavimas(int porankis){
+
+	int suma = 0;
+	for (int a = 0; a < nd_rezultatas.size() ; a++) {
+		suma += nd_rezultatas[a];
+	}
+
+	double mediana;
+	if (porankis == 1) {
+
+		if (nd_rezultatas.size()% 2 != 0) {
+			int abc = round(nd_rezultatas.size() / 2);
+			mediana = nd_rezultatas[abc];
+		}
+
+		else if ( nd_rezultatas.size() % 2 == 0) {
+			mediana = ( nd_rezultatas[nd_rezultatas.size() / 2 - 1] + nd_rezultatas[ nd_rezultatas.size() / 2] )/2;
+		}
+		bendras_pazymys = (0.4 * mediana) + (0.6 * egzamino_rezultatas);
+	}
+
+	else if(porankis == 0){
+		bendras_pazymys = (0.4 * ( suma / nd_rezultatas.size() ) ) + (0.6 * egzamino_rezultatas );
+	}
+
+}
+
+bool comparation(Studentas &a, Studentas &b){
+	return (a.vardas() < b.vardas() || (a.vardas() == b.vardas() && a.pavarde() < b.pavarde()));
+}
+
+void splitOutput(std::vector<Studentas> &vektoriux, std::vector<Studentas> &kietekai, std::vector<Studentas> &vargsiukai){
+	int count = 0;
+	int kitasCount = 0;
+	for(int k=0; k<vektoriux.size(); k++){
+		if(vektoriux[k].final() >= 5){
+			kietekai.push_back(Studentas());
+			kietekai[count] = vektoriux[k];
+			count++;
+		}
+		else if(vektoriux[k].final() < 5){
+			vargsiukai.push_back(Studentas());
+			vargsiukai[kitasCount] = vektoriux[k];
+			kitasCount++;
+		}
+	}
+	
+}
+
+void print(std::vector<Studentas> printeris, std::vector<Studentas> vargsiukai, std::vector<Studentas> kietekai, int pasirinkimas){
+	std::cout << std::endl;
+	int hehehey;
+	std::cout << "Ar norite isvesti visus studentus ar sukategorizuotus ?" << std::endl;
+	std::cout << "0 - Isvedami visi studentai" << std::endl;
+	std::cout << "1 - Isvedami sukategorizuoti studentai" << std::endl;
+	std::cin >> hehehey;
+	std::cout << std::endl;
+
+	
+
+	if(hehehey == 0){
+
+		std::cout<< std::endl;
+		std::cout.width(15);
+		std::cout << std::left << "Vardas";
+		std::cout.width(15);
+		std::cout << std::left << "Pavarde";
+		std::cout.width(16);
+
+		if (pasirinkimas == 0) {
+			std::cout << std::left << "Galutinis (Vid.)" << std::endl;
+		}
+
+		else if (pasirinkimas == 1) {
+			std::cout << std::left << "Galutinis (Med.)" << std::endl;
+		}
+
+		for (int n = 0; n < 60; n++) std::cout << "-";
+
+		for(int sup=0; sup < printeris.size(); sup++) {
+			std::cout << std::endl;
+			std::cout.width(15);
+			std::cout << std::left << printeris[sup].vardas();
+			std::cout.width(20);
+			std::cout << std::left << printeris[sup].pavarde();
+			std::cout << std::fixed << std::setprecision(2) << printeris[sup].final() << std::endl;
+		}
+
+	}
+
+	else if(hehehey == 1){
+		std::cout << "                         " << "VARGSIUKAI:" << std::endl;
+
+		std::cout.width(15);
+		std::cout << std::left << "Vardas";
+		std::cout.width(15);
+		std::cout << std::left << "Pavarde";
+		std::cout.width(16);
+
+		if (pasirinkimas == 0) {
+			std::cout << std::left << "Galutinis (Vid.)" << std::endl;
+		}
+
+		else if (pasirinkimas == 1) {
+			std::cout << std::left << "Galutinis (Med.)" << std::endl;
+		}
+
+		for (int n = 0; n < 60; n++) std::cout << "-";
+
+		for(int sup=0; sup < vargsiukai.size(); sup++) {
+			std::cout << std::endl;
+			std::cout.width(15);
+			std::cout << std::left << vargsiukai[sup].vardas();
+			std::cout.width(20);
+			std::cout << std::left << vargsiukai[sup].pavarde();
+			std::cout << std::fixed << std::setprecision(2) << vargsiukai[sup].final() << std::endl;
+		}
+		std::cout<< std::endl;
+		std::cout<< std::endl;
+		
+		std::cout << "                         " << "KIETEKAI:" << std::endl;
+
+		std::cout<< std::endl;
+		std::cout.width(15);
+		std::cout << std::left << "Vardas";
+		std::cout.width(15);
+		std::cout << std::left << "Pavarde";
+		std::cout.width(16);
+
+		if (pasirinkimas == 0) {
+			std::cout << std::left << "Galutinis (Vid.)" << std::endl;
+		}
+
+		else if (pasirinkimas == 1) {
+			std::cout << std::left << "Galutinis (Med.)" << std::endl;
+		}
+
+		for (int n = 0; n < 60; n++) std::cout << "-";
+
+		for(int sup=0; sup < kietekai.size(); sup++) { 
+			std::cout << std::endl;
+			std::cout.width(15);
+			std::cout << std::left << kietekai[sup].vardas();
+			std::cout.width(20);
+			std::cout << std::left << kietekai[sup].pavarde();
+			std::cout << std::fixed << std::setprecision(2) << kietekai[sup].final() << std::endl;
+	}
+
+	}
+
+	std::cout << std::endl;
+}
+
+void outputToFile(std::vector<Studentas> kiec,std::vector<Studentas> vargs, int pasirinkimas){
+	std::ofstream vargsiukai;
+	std::ofstream kietekai;
+	vargsiukai.open("vargsiukai.txt");
+	kietekai.open("kietekai.txt");
+
+	//vargsiuku outputas
+		vargsiukai.width(15);
+		vargsiukai << std::left << "Vardas";
+		vargsiukai.width(15);
+		vargsiukai << std::left << "Pavarde";
+		vargsiukai.width(16);
+
+		if (pasirinkimas == 0) {
+			vargsiukai << std::left << "Galutinis (Vid.)" << std::endl;
+		}
+
+		else if (pasirinkimas == 1) {
+			vargsiukai << std::left << "Galutinis (Med.)" << std::endl;
+		}
+		for (int n = 0; n < 60; n++) vargsiukai << "-";
+
+	//kieteku outputas
+		kietekai.width(15);
+		kietekai << std::left << "Vardas";
+		kietekai.width(15);
+		kietekai << std::left << "Pavarde";
+		kietekai.width(16);
+
+		if (pasirinkimas == 0) {
+			kietekai << std::left << "Galutinis (Vid.)" << std::endl;
+		}
+
+		else if (pasirinkimas == 1) {
+			kietekai << std::left << "Galutinis (Med.)" << std::endl;
+		}
+		for (int n = 0; n < 60; n++) kietekai << "-";
+
+	
+		for(int sup=0; sup < kiec.size(); sup++) {
+			
+				kietekai << std::endl;
+				kietekai.width(15);
+				kietekai << std::left << kiec[sup].vardas();
+				kietekai.width(20);
+				kietekai << std::left << kiec[sup].pavarde();
+				kietekai << std::fixed << std::setprecision(2) << kiec[sup].final() << std::endl;
+		}
+		for(int b=0; b<vargs.size(); b++){
+				vargsiukai << std::endl;
+				vargsiukai.width(15);
+				vargsiukai << std::left << vargs[b].vardas();
+				vargsiukai.width(20);
+				vargsiukai << std::left << vargs[b].pavarde();
+				vargsiukai << std::fixed << std::setprecision(2) << vargs[b].final() << std::endl;
+		}
+}
+
+void readFile(std::vector<Studentas> &printeris, int k, int pasirinkimas){
+		
+	std::string Value = "";
+	int count = 0;
+	std::ifstream failas("kursiokai.txt");
+	
+
+	try{
+			failas.exceptions(std::ifstream::failbit);
+	}
+	catch(std::ios_base::failure& fail){
+			std::cerr <<"\n Failas -  kursiokai.txt  - nerastas; ikelkite faila i programos vykdymo aplanka ir paspauskite Enter mygtuka"; 
+			std::cin.ignore();
+			std::cin.get();
+			readFile(printeris, k, pasirinkimas);
+	}
+	
+	failas >> Value >> Value >> Value;
+	
+	while(Value[0] == 'N'){
+			failas >> Value;
+			count++;
+	}
+
+	while(!failas.eof()){
+		printeris.push_back(Studentas());
+		printeris[k].readStudent(pasirinkimas, failas, count);
+		k++;
+		if(k%1000 == 0){
+				std::cout << k << std::endl;
+		}
+	}
+	
+	failas.close();
+		
+}
+
+void Studentas :: readStudent(int pasirinkimas, std::ifstream& nuskaitymas, int count){
+	nuskaitymas >> name >> surname;
+	for(int l=0; l < count; l++){
+		nd_rezultatas.push_back(int());
+		nuskaitymas >> nd_rezultatas[l];
+	}
+	nuskaitymas >> egzamino_rezultatas;
+	galutinioSkaiciavimas(pasirinkimas);
+}
+
+void ivedimoPorankis(std::vector<Studentas> &printeris, int &pasirinkimas, int k, int ivedimoPorank, char option){
+
+	if(ivedimoPorank == 0){
+		char rodyklius;
+		int rodiklius = 0;
+		printeris.push_back(Studentas());
+		while ( k >= 0 ) {
+			if (k > 0){
+				naujasIrasas(rodyklius, rodiklius);
+
+				if(rodyklius == 'y' || rodyklius == 'Y'){
+					printeris.push_back(Studentas());
+				}
+				else if(rodyklius == 'n' || rodyklius == 'N'){
+					break;
+				}
+				else{
+					naujasIrasas(rodyklius, rodiklius);
+				}
+			}
+			printeris[k].vienoStudentoIvedimas(pasirinkimas, k, ivedimoPorank, option);
+			k++;
+			rodiklius = 0;
+		}
+
+		
+		
+	}
+
+	else if(ivedimoPorank == 1){
+		auto startas = std::chrono::steady_clock::now( );
+		readFile(printeris, k, pasirinkimas);
+		auto finisas = std::chrono::duration_cast<std::chrono::milliseconds>( std::chrono::steady_clock::now( ) - startas );
+		std::cout << std::endl;
+		std::cout << "Nuskaitymas is failo uztruko: " << finisas.count() << " ms" << std::endl;
+		std::cout << std::endl;
+
+	}
+}
+
+void Studentas :: vienoStudentoIvedimas(int &pasirinkimas, int& k, int isvedimoPorank, char option){
+
+	std::cout << "Iveskite studento varda" << std::endl;
+	std::cin >> name;
+	std::cin >> surname;
+	
+	std::cout << "Ar norite rezultatus sugeneruoti atsitiktinai ? Y/N" << std::endl;
+	std::cin >> option;
+
+	if (option == 'Y' || option == 'y') {
+
+		srand(time(0));
+		n = rand() % 15 + 1;
+		for (int a = 0; a < n; a++) {
+			nd_rezultatas.push_back(int());
+			nd_rezultatas[a] = rand() % 10 + 1;
+		}
+		egzamino_rezultatas = rand() % 10 + 1;
+		std::cout << std::endl;
+		std::cout << std::endl;
+		bubbleSort(nd_rezultatas, n);
+		std::cout << "Namu darbu rezultatai: " << std::endl;
+		for (int a = 0; a < n; a++) {
+			std::cout << nd_rezultatas[a] << std::endl;
+		}
+		std::cout << std::endl;
+		std::cout << std::endl;
+		std::cout << "Egzamino rezultatas: " << std::endl;
+		std::cout << egzamino_rezultatas << std::endl;
+		std::cout << std::endl;
+	} 
+
+	else if (option == 'N' || option == 'n') {
+		std::cout << "Iveskite studento egzamino rezultata: " << std::endl;
+
+		validityCheck(egzamino_rezultatas);
+		while( egzamino_rezultatas > 10 || egzamino_rezultatas < 1) {
+			std::cout << "Egzamino rezultatas privalo buti intervale nuo 1 iki 10, iveskite tinkama rezultata:" << std::endl;
+		}
+
+		std::cout << std::endl;
+
+		std::cout << "Iveskite studento namu darbu uzduociu kieki ir kiekvienos uzduoties ivertinima:" << std::endl;
+		std::cout << std::endl;
+
+		std::cout << "Namu darbu uzduociu kiekis: ";
+
+		validityCheck(n);
+		while(n<0){
+			std::cout << "Uzduociu kiekis negali buti 0 ar maziau" << std::endl;
+			std::cout << "Iveskite uzduociu kieki: " << std::endl;
+			validityCheck(n);
+		}
+		std::cout << std::endl;
+
+		std::cout << "Namu darbu uzduociu ivertinimai: " << std::endl << std::endl;
+		input();
+
+	}
+
+	else {
+		std::cout << "Iveskite Y arba N:" << std::endl;
+		std::cin >> option;
+	}
+
+	galutinioSkaiciavimas(pasirinkimas);
+
+	
+}
