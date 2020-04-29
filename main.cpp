@@ -6,7 +6,7 @@ int main() {
   int pasirinkimas;
   char taipArbaNe;
   int i = 0;
-  int ivedimoPorank;
+  int ivestiesBudas_int;
   char ived;
   int ka;
   double skirtumas;
@@ -28,9 +28,9 @@ int main() {
   std::cout << "0 - Irasai ivedami ranka" << std::endl;
   std::cout << "1 - Irasai nuskaitomi is failo" << std::endl;
 
-  std::cin >> ivedimoPorank;
+  std::cin >> ivestiesBudas_int;
 
-  ivedimoPorankis(studentai, pasirinkimas, i, ivedimoPorank, taipArbaNe);
+  ivedimoBudas(studentai, pasirinkimas, i, ivestiesBudas_int, taipArbaNe);
 
   
   std::vector<Studentas> kietekai;
@@ -44,6 +44,8 @@ int main() {
 
   std::cout << "Skirstymas i atskiras kategorijas uztruko: " << pabaiga.count() << " ms" << std::endl;
   
+  
+
   std::cout << "\nAr norite isvesti i konsole ar i atskira faila ?" << std::endl;
   std::cout << "0 - i konsole" << std::endl;
   std::cout << "1 - i faila" << std::endl;
@@ -64,5 +66,12 @@ int main() {
     std::cout << std::endl;
   }
 
+
+  // Vieno studento duomenu isvedimas naudojant custom operatoriu
   
+  // std::cout << "Iveskite studento eiles numeri: " << std::endl;
+  // int labas;
+  // std::cin >> labas;
+  // std::cout << studentai[labas];
+
 }
