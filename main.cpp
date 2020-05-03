@@ -12,6 +12,14 @@ int main() {
   double skirtumas;
   
 
+  // Custom operatoriu demonstracija
+  
+  /* Studentas pavyzdinis;
+  std::cin >> pavyzdinis;
+  pavyzdinis.galutinioSkaiciavimas(0);
+  std::cout << pavyzdinis;
+  */
+
   std::cout << "Ar norite sukurti nauja faila ? Y/N" << std::endl;
   std::cin >> ived;
 
@@ -65,13 +73,5 @@ int main() {
     std::cout << "Isvedimas i failus uztruko: " << elapsed.count() << " ms" << std::endl;
     std::cout << std::endl;
   }
-
-
-  // Vieno studento duomenu isvedimas naudojant custom operatoriu
-  
-  // std::cout << "Iveskite studento eiles numeri: " << std::endl;
-  // int labas;
-  // std::cin >> labas;
-  // std::cout << studentai[labas];
 
 }

@@ -16,7 +16,8 @@ class Studentas {
 
   //Custom Print Operator
   friend std::ostream& operator<<(std::ostream&, const Studentas&);
-  friend std::ostream& operator>>(std::ostream&, const Studentas&);
+  friend std::istream& operator>>(std::istream&, Studentas&);
+
   private:
     std::string name;
     std::string surname;

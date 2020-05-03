@@ -26,7 +26,7 @@ Studentas& Studentas::operator=(const Studentas& source){
 	return *this;
 }
 
-//Custom Print Operator
+//Custom Print operator
 std::ostream& operator<<(std::ostream& os, const Studentas& c){
 
 	os << c.name << " " << c.surname << std::endl;
@@ -38,6 +38,54 @@ std::ostream& operator<<(std::ostream& os, const Studentas& c){
 	os << "Egzamino Rezultatas: " << c.egzamino_rezultatas << std::endl;
 	os << "Bendras Pazymys: " << c.bendras_pazymys << std::endl;
 	return os << std::endl;
+}
+
+//Custom Input operator
+std::istream& operator>>(std::istream& is, Studentas& c){
+	int count;
+	std::cout << "Iveskite studento varda ir pavarde: " << std::endl;
+	is >> c.name >> c.surname;
+	while(is.fail()){
+		is.clear();
+		is.ignore();
+		std::cout << "Neteisingai ivedete varda ir pavarde, bandykite dar karta: " << std::endl;
+		is >> c.name >> c.surname;
+	}
+	std::cout << std::endl;
+	std::cout << "Iveskite namu darbu kieki:  " << std::endl;
+	is >> c.n;
+	while(is.fail() || c.n < 0){
+		is.clear();
+		is.ignore();
+		std::cout << "Neteisingai ivedete namu darbu kieki, bandykite dar karta: " << std::endl;
+		is >> c.n;
+	}
+	std::cout << std::endl;
+	std::cout << "Iveskite namu darbu rezultatus: " << std::endl;
+	for(int i=0; i<c.n; i++){
+		c.nd_rezultatas.push_back(int());
+		std::cout << i+1 << " - ";
+		is >> c.nd_rezultatas[i];
+		while(is.fail() || c.nd_rezultatas[i] > 10 || c.nd_rezultatas[i] < 0){
+			is.clear();
+			is.ignore();
+			std::cout << "Neteisingai ivedete, bandykite dar karta: " << std::endl;
+			std::cout << i+1 << " - ";
+			is >> c.nd_rezultatas[i];
+		}
+	}
+	std::cout << std::endl;
+	std::cout << "Iveskite egzamino rezultata: " << std::endl;
+	is >> c.egzamino_rezultatas;
+	while(is.fail() || c.egzamino_rezultatas > 10 || c.egzamino_rezultatas < 0){
+		is.clear();
+		is.ignore();
+		std::cout << "Neteisingai ivedete, bandykite dar karta: " << std::endl;
+		is >> c.egzamino_rezultatas;
+	}
+	std::cout << std::endl;
+	return is;
+	
 }
 
 //Naudojama namu darbu rezultatu rusiavimui, jei skaiciavimui pasirinktas Medianos budas
@@ -198,6 +246,7 @@ void Studentas :: galutinioSkaiciavimas(int porankis){
 	}
 
 	double mediana;
+	// jei porankis == 1, galutinis balas skaiciuojamas su mediana
 	if (porankis == 1) {
 
 		if (nd_rezultatas.size()% 2 != 0) {
@@ -210,7 +259,7 @@ void Studentas :: galutinioSkaiciavimas(int porankis){
 		}
 		bendras_pazymys = (0.4 * mediana) + (0.6 * egzamino_rezultatas);
 	}
-
+	// jei porankis == 0, galutinis balas skaiciuojamas su vidurkiu
 	else if(porankis == 0){
 		bendras_pazymys = (0.4 * ( suma / nd_rezultatas.size() ) ) + (0.6 * egzamino_rezultatas );
 	}
