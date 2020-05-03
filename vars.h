@@ -13,6 +13,11 @@
 
 
 class Studentas {
+
+  //Custom Print Operator
+  friend std::ostream& operator<<(std::ostream&, const Studentas&);
+  friend std::istream& operator>>(std::istream&, Studentas&);
+
   private:
     std::string name;
     std::string surname;
@@ -20,7 +25,15 @@ class Studentas {
     std::vector<int> nd_rezultatas;
     double egzamino_rezultatas;
     double bendras_pazymys;
+
   public:
+    //Copy Constructor
+    Studentas(const Studentas&);
+
+    //Overloaded Assignment Operator
+    Studentas& operator=(const Studentas& );
+
+
     Studentas() : egzamino_rezultatas(0) { }
     inline std::string vardas() const {return name;} // get'eriai
     inline std::string pavarde() const {return surname;} // get'eriai
@@ -65,4 +78,4 @@ void outputToFile(std::vector<Studentas>, std::vector<Studentas>, int);
 
 void readFile(std::vector<Studentas> &, int , int );
 
-void ivedimoPorankis(std::vector<Studentas>&, int&, int , int , char );
+void ivedimoBudas(std::vector<Studentas>&, int&, int , int , char );

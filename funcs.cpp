@@ -1,6 +1,94 @@
 #include "vars.h"
 
 
+
+//Copy Constructor
+Studentas::Studentas(const Studentas& source){
+	name = source.name;
+	surname = source.surname;
+	n = source.n;
+	nd_rezultatas = source.nd_rezultatas;
+	egzamino_rezultatas = source.egzamino_rezultatas;
+	bendras_pazymys = source.bendras_pazymys;
+}
+
+//Overloaded Assignment Operator
+Studentas& Studentas::operator=(const Studentas& source){
+	if(this == &source){
+		return *this;
+	}
+	name = source.name;
+	surname = source.surname;
+	n = source.n;
+	nd_rezultatas = source.nd_rezultatas;
+	egzamino_rezultatas = source.egzamino_rezultatas;
+	bendras_pazymys = source.bendras_pazymys;
+	return *this;
+}
+
+//Custom Print operator
+std::ostream& operator<<(std::ostream& os, const Studentas& c){
+
+	os << c.name << " " << c.surname << std::endl;
+	os << "Namu darbu rezultatai: ";
+	for(int i=0; i<c.nd_rezultatas.size(); i++){ 
+		os << c.nd_rezultatas[i] << " | ";
+	}
+	os << std::endl;
+	os << "Egzamino Rezultatas: " << c.egzamino_rezultatas << std::endl;
+	os << "Bendras Pazymys: " << c.bendras_pazymys << std::endl;
+	return os << std::endl;
+}
+
+//Custom Input operator
+std::istream& operator>>(std::istream& is, Studentas& c){
+	int count;
+	std::cout << "Iveskite studento varda ir pavarde: " << std::endl;
+	is >> c.name >> c.surname;
+	while(is.fail()){
+		is.clear();
+		is.ignore();
+		std::cout << "Neteisingai ivedete varda ir pavarde, bandykite dar karta: " << std::endl;
+		is >> c.name >> c.surname;
+	}
+	std::cout << std::endl;
+	std::cout << "Iveskite namu darbu kieki:  " << std::endl;
+	is >> c.n;
+	while(is.fail() || c.n < 0){
+		is.clear();
+		is.ignore();
+		std::cout << "Neteisingai ivedete namu darbu kieki, bandykite dar karta: " << std::endl;
+		is >> c.n;
+	}
+	std::cout << std::endl;
+	std::cout << "Iveskite namu darbu rezultatus: " << std::endl;
+	for(int i=0; i<c.n; i++){
+		c.nd_rezultatas.push_back(int());
+		std::cout << i+1 << " - ";
+		is >> c.nd_rezultatas[i];
+		while(is.fail() || c.nd_rezultatas[i] > 10 || c.nd_rezultatas[i] < 0){
+			is.clear();
+			is.ignore();
+			std::cout << "Neteisingai ivedete, bandykite dar karta: " << std::endl;
+			std::cout << i+1 << " - ";
+			is >> c.nd_rezultatas[i];
+		}
+	}
+	std::cout << std::endl;
+	std::cout << "Iveskite egzamino rezultata: " << std::endl;
+	is >> c.egzamino_rezultatas;
+	while(is.fail() || c.egzamino_rezultatas > 10 || c.egzamino_rezultatas < 0){
+		is.clear();
+		is.ignore();
+		std::cout << "Neteisingai ivedete, bandykite dar karta: " << std::endl;
+		is >> c.egzamino_rezultatas;
+	}
+	std::cout << std::endl;
+	return is;
+	
+}
+
+//Naudojama namu darbu rezultatu rusiavimui, jei skaiciavimui pasirinktas Medianos budas
 void bubbleSort(std::vector<int> nd, int n) {
 	bool exchanges;
 	do {
@@ -18,6 +106,7 @@ void bubbleSort(std::vector<int> nd, int n) {
 
 template <typename T>
 
+//Tikrinama ar buvo ivestas skaicius (galima naudoti ir double, ir int ivedimui)
 void validityCheck(T &n) {
 	std::cin >> n;
 	while (std::cin.fail()) {
@@ -27,7 +116,7 @@ void validityCheck(T &n) {
 		std::cin >> n;
 	}
 }
-
+//Funkcija naudojama plocio skaiciavimui (kai generuojamas failas)
 int digitCounter(int no){
 		int a = 0;
 		if(no == -1){
@@ -43,6 +132,7 @@ int digitCounter(int no){
 		return a;
 }
 
+//Failo generavimo funkcija
 void random_gen(){
 		int n, kiekis;
 		int temp = -1;
@@ -99,6 +189,7 @@ void random_gen(){
 		std::cout << "Failo generavimas uztruko: " << pbaiga.count() << " ms" << std::endl;
 }
 
+//Atskira funkcija galutinio balo skaiciavimo budo pasirinkimui (del rekursijos)
 void ivedimas(int &pvz) {
 	std::string pavyzdys;
 	std::cin >> pavyzdys;
@@ -111,11 +202,11 @@ void ivedimas(int &pvz) {
 		ivedimas(pvz);
 	}
 }
-
+//Funkcija Namu Darbu Rezultatu ivedimui
 void Studentas :: input() {
 	int indeksas = 0;
 	while (indeksas <  n) {
-		 nd_rezultatas.push_back(int());
+		nd_rezultatas.push_back(int());
 		std::cout << indeksas + 1 << " - ";
 		validityCheck( nd_rezultatas[indeksas]);
 		try {
@@ -134,6 +225,7 @@ void Studentas :: input() {
 	indeksas = 0;
 }
 
+//Atskira funkcija nustatymui ar vartotojas nori prideti nauja irasa (del rekursijos)
 void naujasIrasas(char &rankis, int &numeriukas){
 	if(numeriukas == 0){
 		std::cout << "Ar norite prideti nauja irasa ? (Y/N)" << std::endl;
@@ -145,6 +237,7 @@ void naujasIrasas(char &rankis, int &numeriukas){
 	numeriukas++;
 }
 
+//Galutinio Balo skaiciavimas
 void Studentas :: galutinioSkaiciavimas(int porankis){
 
 	int suma = 0;
@@ -153,6 +246,7 @@ void Studentas :: galutinioSkaiciavimas(int porankis){
 	}
 
 	double mediana;
+	// jei porankis == 1, galutinis balas skaiciuojamas su mediana
 	if (porankis == 1) {
 
 		if (nd_rezultatas.size()% 2 != 0) {
@@ -165,17 +259,19 @@ void Studentas :: galutinioSkaiciavimas(int porankis){
 		}
 		bendras_pazymys = (0.4 * mediana) + (0.6 * egzamino_rezultatas);
 	}
-
+	// jei porankis == 0, galutinis balas skaiciuojamas su vidurkiu
 	else if(porankis == 0){
 		bendras_pazymys = (0.4 * ( suma / nd_rezultatas.size() ) ) + (0.6 * egzamino_rezultatas );
 	}
 
 }
 
+//Palyginimo funkcija skirta studentu irasu rusiavimui pagal varda ir pavarde
 bool comparation(Studentas &a, Studentas &b){
 	return (a.vardas() < b.vardas() || (a.vardas() == b.vardas() && a.pavarde() < b.pavarde()));
 }
 
+//Funkcija skirta atskirti studentu irasus pagal Galutini Bala i dvi atskiras dalis 
 void splitOutput(std::vector<Studentas> &vektoriux, std::vector<Studentas> &kietekai, std::vector<Studentas> &vargsiukai){
 	int count = 0;
 	int kitasCount = 0;
@@ -194,6 +290,7 @@ void splitOutput(std::vector<Studentas> &vektoriux, std::vector<Studentas> &kiet
 	
 }
 
+//Funkcija skirta isspausdinti studentu irasus i konsole - bendrai visus arba pagal atskiras kategorijas
 void print(std::vector<Studentas> printeris, std::vector<Studentas> vargsiukai, std::vector<Studentas> kietekai, int pasirinkimas){
 	std::cout << std::endl;
 	int hehehey;
@@ -298,6 +395,7 @@ void print(std::vector<Studentas> printeris, std::vector<Studentas> vargsiukai, 
 	std::cout << std::endl;
 }
 
+//Funkcija skirta isspausdinti studentu irasus i failus
 void outputToFile(std::vector<Studentas> kiec,std::vector<Studentas> vargs, int pasirinkimas){
 	std::ofstream vargsiukai;
 	std::ofstream kietekai;
@@ -356,6 +454,7 @@ void outputToFile(std::vector<Studentas> kiec,std::vector<Studentas> vargs, int 
 		}
 }
 
+//Funkcija skirta nuskaityti studentu duomenis is failo
 void readFile(std::vector<Studentas> &printeris, int k, int pasirinkimas){
 		
 	std::string Value = "";
@@ -393,6 +492,7 @@ void readFile(std::vector<Studentas> &printeris, int k, int pasirinkimas){
 		
 }
 
+//Funkcija skirta nuskaityti vieno studento duomenis is failo
 void Studentas :: readStudent(int pasirinkimas, std::ifstream& nuskaitymas, int count){
 	nuskaitymas >> name >> surname;
 	for(int l=0; l < count; l++){
@@ -403,9 +503,10 @@ void Studentas :: readStudent(int pasirinkimas, std::ifstream& nuskaitymas, int 
 	galutinioSkaiciavimas(pasirinkimas);
 }
 
-void ivedimoPorankis(std::vector<Studentas> &printeris, int &pasirinkimas, int k, int ivedimoPorank, char option){
+//Funkcija skirta nustatyti studentu irasu ivedimo buda - konsole arba is failo
+void ivedimoBudas(std::vector<Studentas> &printeris, int &pasirinkimas, int k, int ivestiesBudas_int, char option){
 
-	if(ivedimoPorank == 0){
+	if(ivestiesBudas_int == 0){
 		char rodyklius;
 		int rodiklius = 0;
 		printeris.push_back(Studentas());
@@ -423,7 +524,7 @@ void ivedimoPorankis(std::vector<Studentas> &printeris, int &pasirinkimas, int k
 					naujasIrasas(rodyklius, rodiklius);
 				}
 			}
-			printeris[k].vienoStudentoIvedimas(pasirinkimas, k, ivedimoPorank, option);
+			printeris[k].vienoStudentoIvedimas(pasirinkimas, k, ivestiesBudas_int, option);
 			k++;
 			rodiklius = 0;
 		}
@@ -432,7 +533,7 @@ void ivedimoPorankis(std::vector<Studentas> &printeris, int &pasirinkimas, int k
 		
 	}
 
-	else if(ivedimoPorank == 1){
+	else if(ivestiesBudas_int == 1){
 		auto startas = std::chrono::steady_clock::now( );
 		readFile(printeris, k, pasirinkimas);
 		auto finisas = std::chrono::duration_cast<std::chrono::milliseconds>( std::chrono::steady_clock::now( ) - startas );
@@ -443,6 +544,7 @@ void ivedimoPorankis(std::vector<Studentas> &printeris, int &pasirinkimas, int k
 	}
 }
 
+//Funkcija skirta vieno studento ivedimui per konsole - ranka arba atsitiktiniu budu
 void Studentas :: vienoStudentoIvedimas(int &pasirinkimas, int& k, int isvedimoPorank, char option){
 
 	std::cout << "Iveskite studento varda" << std::endl;
