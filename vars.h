@@ -10,17 +10,22 @@
 #include <algorithm>
 #include <chrono>
 
+class zmogus {
+  protected:
+    std::string name;
+    std::string surname;
+  public:
+    virtual int show() { return 0; }
+};
+  
 
-
-class Studentas {
+class Studentas: public zmogus {
 
   //Custom Print Operator
   friend std::ostream& operator<<(std::ostream&, const Studentas&);
   friend std::istream& operator>>(std::istream&, Studentas&);
 
   private:
-    std::string name;
-    std::string surname;
     int n;
     std::vector<int> nd_rezultatas;
     double egzamino_rezultatas;
