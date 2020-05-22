@@ -134,14 +134,56 @@ c
 | O2 	|     1 569     	|      16 001     	|
 | O3 	|     1 616     	|      16 436     	|
 
+* ### v1.2
 
-## Naudojimosi instrukcija:
+* Sukurti custom operatoriai:
+1. Priskyrimo operatorius (Overloaded assignment): =
+2. Įvesties operatorius: >>
+3. Išvesties operatorius: <<
+
+* ### v1.5
+
+* Sukurta bazinė klasė: žmogus ir iš šios klasės, klasė Studentas paversta į *derived* klasę
+* Bazinė klasė - žmogus - paversta abstrakčiąja klasę - negalima sukurti klasės žmogus objektų, tik objektus iš išvestinių klasių
+
+* ### v2.0
+
+* Dokumentacija sukurta naudojant Doxygen
+* Atliktas unit testing'as: mainTest.cpp
+  * Pratestuota galutinio balo skaiciavimo funkcija
+  * Pratestuota skaitmenu skaiciavimo funkcija
+* Papildytas README.md
+
+
+## Diegimo instrukcija:
 1. Atsidarę šį puslapį, spauskite "Clone or Download" mygtuką, kad parsisiųstumėte programą
 2. Parsisiuntę Zip failą, išarchyvuokite jį sau patogiu įrankiu
 3. Atsidarykite komandinės eilutės įrankį ir nueikite į išarchyvuotą aplanką
-4. Išarchyvuotame aplanke naudokite šią komandą, kad paruoštumėte programą naudojimui:
+4. Išarchyvuotame aplanke naudokite šias komandas:
+  * Komanda, skirta programos paruošimui:
     * **make**
-5. Naudokite šią komandą programos paleidimui:
+  * Komanda, skirta programos paleidimui:
     * **make run** 
-6. Komanda skirta aplanko išvalymui:
+  * Komanda, skirta aplanko išvalymui:
     * **make clear**
+  * Komanda, skirta programos testavimo paruošimui:
+    * **make test**
+  * Komanda, skirta programos testavimui:
+    * **make run_test**
+
+
+## Naudojimosi instrukcija:
+1. Komanda - "make run" - paleiskite programą
+2. Paleidus programą, pasirinkite ar norėsite sugeneruoti naują failą ar naudoti esamą
+    * Pasirinkus naujo failo generavimą, įveskite namų darbų skaičių, bendrą įrašų skaičių ir failo pavadinimą (programa skaito tik failus pavadinimu kursiokai.txt) - paspaudus Enter, programa išves failo generavimo trukmę.
+3. Pasirinkite galutinio balo skaičiavimo metodą: namų darbų rezultatų skaičiavimas pagal medianą arba vidurkį
+4. Pasirinkite įrašų įvesties būdą: ranka arba iš failo
+    * Pasirinkus ranka:
+    * Įveskite studento vardą ir pavardę
+    * Pasirinkite ar norite rezultatus generuoti atsitiktinai
+      * Pasirinkus rezultatų įvedimą ranka:
+      * Įveskite studento egzamino rezultatą
+      * Įveskite namų darbų užduočių kiekį ir jų rezultatus
+5. Pasirinkite ar norite pridėti naują įrašą
+6. Pasirinkite išvesties būdą: į konsolę arba į failą
+    * Pasirinkus išvedimą į konsolę, nurodykite išvedimo formatą: visi studentai ar kategorizuoti studentai

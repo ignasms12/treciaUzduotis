@@ -40,12 +40,18 @@ class Studentas: public zmogus {
 
 
     Studentas() : egzamino_rezultatas(0) { }
-    inline std::string vardas() const {return name;} // get'eriai
-    inline std::string pavarde() const {return surname;} // get'eriai
-    inline int nd(int a) {return nd_rezultatas[a] ; } // get'eriai
-    inline double exam() const {return egzamino_rezultatas;} // get'eriai
-    inline double final() const {return bendras_pazymys;} //get'eriai
-    inline int kiekis() const {return n;} //get'eriai
+    inline std::string get_vardas() const {return name;} // get'eriai
+    inline std::string get_pavarde() const {return surname;} // get'eriai
+    inline int get_nd(int a) {return nd_rezultatas[a] ; } // get'eriai
+    inline double get_exam() const {return egzamino_rezultatas;} // get'eriai
+    inline double get_final() const {return bendras_pazymys;} //get'eriai
+    inline int get_kiekis() const {return n;} //get'eriai
+    inline void set_vardas(std::string vardas) {name = vardas;} // set'eriai
+    inline void set_pavarde(std::string pavarde) {surname = pavarde;} // set'eriai
+    inline void set_nd(int a, int nd) {nd_rezultatas.push_back(int()); nd_rezultatas[a] = nd ; } // set'eriai
+    inline void set_exam(double exam) {egzamino_rezultatas = exam;} // set'eriai
+    inline void set_final(double final) {bendras_pazymys = final;} //set'eriai
+    inline void set_kiekis(int kiekis) { n = kiekis;} //set'eriai
     void galutinioSkaiciavimas(int);
     void readStudent(int, std::ifstream&, int);
     void input();
@@ -81,6 +87,6 @@ void print(std::vector<Studentas> , std::vector<Studentas>, std::vector<Studenta
 
 void outputToFile(std::vector<Studentas>, std::vector<Studentas>, int);
 
-void readFile(std::vector<Studentas> &, int , int );
+void readFile(std::vector<Studentas> &, int, int, std::string );
 
 void ivedimoBudas(std::vector<Studentas>&, int&, int , int , char );

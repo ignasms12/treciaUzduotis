@@ -1,0 +1,242 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{\#\# Versijos\+:}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item \#\#\# v0.\+1
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Programa nuskaito įvestus duomenis\+: {\itshape Studentų vardus ir pavardes} {\itshape Namų darbų ir egzamino rezultatus}
+\item Išveda studento galutinį balą
+\item Galima pasirinkti galutinio balo skaičiavimo būdą\+: vidurkis arba mediana
+\item Balai gali būti generuojami atsitiktinai
+\end{DoxyEnumerate}
+
+Įkeltos dvi versijos\+: su vektoriais ir su dinaminiu masyvu
+
+\DoxyHorRuler{0}
+
+\begin{DoxyItemize}
+\item \#\#\# v0.\+2 {\bfseries{Pridėta\+:}}
+\end{DoxyItemize}
+
+studentų duomenu nuskaitymas iš failo,
+\begin{DoxyItemize}
+\item surūšiuotas studentų irašų išvedimas
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+\begin{DoxyItemize}
+\item \#\#\# v0.\+3 {\bfseries{Atliktas refactoring\textquotesingle{}as\+:}}
+\item funkcijų apsirašymai, naujų duomenų tipų įvedimai perkelti į header failą,
+\item įvestas išimčių valdymas
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+\begin{DoxyItemize}
+\item \#\#\# v0.\+4 {\bfseries{Pridėta\+:}}
+\end{DoxyItemize}
+
+failų generavimas (įvedamas namų darbų kiekis ir įrašų kiekis),
+\begin{DoxyItemize}
+\item išvedimo rūšiavimas pagal galutinį rezultatą (mažiau nei 5 -\/~vargšiukai; 5 ir daugiau -\/ kietekai),
+\item pridėta programos veikimo spartos matavimo galimybė (matuojama\+: failų kūrimo greitis, duomenų nuskaitymo iš failo greitis, studentų rūšiavimo greitis, surūšiuotų studentų išvedimo į failus greitis)
+\begin{DoxyItemize}
+\item \href{https://github.com/ignasms12/antraUzduotis/releases/download/v0.4/v0.4.ataskaita.pdf}{\texttt{ Nuoroda į programos veikimo analizę}}
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+\begin{DoxyItemize}
+\item \#\#\# v0.\+5 
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsubsection{Konteinerių testavimas}\label{md__r_e_a_d_m_e_autotoc_md6}
+{\itshape laikai atvaizduoti milisekundėmis}
+
+{\bfseries{Vektoriai\+:}}
+
+\begin{center}\end{center} 
+
+\begin{center}\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Studentų kiekis }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 000  }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Studentų kiekis }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 000  }\\\cline{1-6}
+\endhead
+Duomenų nuskaitymas iš failų &\PBS\centering 11 &65 &613 &6124 &109989  \\\cline{1-6}
+Studentų rūšiavimas į dvi kategorijas &\PBS\centering 1 &9 &91 &1079 &16222  \\\cline{1-6}
+\end{longtabu}
+\end{center} 
+
+\begin{center}\end{center} 
+
+{\bfseries{Sąrašai\+:}}
+
+\begin{center}\end{center} 
+
+\begin{center}\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Studentų kiekis }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 000  }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Studentų kiekis }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 000  }\\\cline{1-6}
+\endhead
+Duomenų nuskaitymas iš failų &\PBS\centering 11 &65 &615 &6231 &80340  \\\cline{1-6}
+Studentų rūšiavimas į dvi kategorijas &\PBS\centering 4 &399 &133829 &N/A &N/A  \\\cline{1-6}
+\end{longtabu}
+\end{center} 
+
+\begin{center}\end{center} 
+
+{\bfseries{Dekos\+:}}
+
+\begin{center}\end{center} 
+
+\begin{center}\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Studentų kiekis }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 000  }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Studentų kiekis }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10 000 000  }\\\cline{1-6}
+\endhead
+Duomenų nuskaitymas iš failų &\PBS\centering 12 &72 &707 &8454 &116547  \\\cline{1-6}
+Studentų rūšiavimas į dvi kategorijas &\PBS\centering 3 &32 &330 &9832 &N/A  \\\cline{1-6}
+\end{longtabu}
+\end{center} 
+
+\begin{center}\end{center} \hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsubsection{Kompiuterio specifikacijos\+:}\label{md__r_e_a_d_m_e_autotoc_md7}
+{\bfseries{C\+PU}} -\/ Intel Core m3-\/7\+Y32 1.\+2 G\+Hz Dual-\/\+Core
+
+{\bfseries{R\+AM}} -\/ 8 GB 1867 M\+Hz L\+P\+D\+D\+R3
+
+{\bfseries{Storage Device}} -\/ S\+SD
+
+\DoxyHorRuler{0}
+
+\begin{DoxyItemize}
+\item \#\#\# v1.\+0
+\end{DoxyItemize}
+
+Pritaikytos dvi skirtingos studentų dalinimo į kategorijas strategijos\+:
+
+
+\begin{DoxyItemize}
+\item {\bfseries{1 strategija}} -\/ Bendro studentų konteinerio elementai rūšiuojami į du naujus konteinerius
+\item {\bfseries{2 strategija}} -\/ Bendro studentų konteinerio elementai, atitinkantys nustatyta sąlygą, yra perkeliami į naują konteinerį ir pašalinami iš originalaus konteinerio
+\end{DoxyItemize}
+
+{\bfseries{1 strategija}}
+
+{\itshape laikai atvaizduoti milisekundėmis}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Duomenų tipas }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas iš failo }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skirstymas į kategorijas  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Duomenų tipas }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas iš failo }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skirstymas į kategorijas  }\\\cline{1-3}
+\endhead
+\PBS\centering Vektoriai &\PBS\centering 65 &\PBS\centering 9  \\\cline{1-3}
+\PBS\centering Deka &\PBS\centering 73 &\PBS\centering 34  \\\cline{1-3}
+\PBS\centering List\textquotesingle{}as &\PBS\centering 66 &\PBS\centering 393  \\\cline{1-3}
+\end{longtabu}
+
+
+{\bfseries{2 strategija}}
+
+{\itshape laikai atvaizduoti milisekundėmis} c \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Duomenų tipas }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas iš failo }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skirstymas į kategorijas  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Duomenų tipas }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas iš failo }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skirstymas į kategorijas  }\\\cline{1-3}
+\endhead
+\PBS\centering Vektoriai &\PBS\centering 65 &\PBS\centering 4302  \\\cline{1-3}
+\PBS\centering Deka &\PBS\centering 74 &\PBS\centering 2846  \\\cline{1-3}
+\PBS\centering List\textquotesingle{}as &\PBS\centering 67 &\PBS\centering 284  \\\cline{1-3}
+\end{longtabu}
+
+
+\DoxyHorRuler{0}
+
+\begin{DoxyItemize}
+\item \#\#\# v1.\+1
+\end{DoxyItemize}
+
+Sukurta nauja git repozitorija
+\begin{DoxyItemize}
+\item Programos kodas perrašytas, pakeitus struktūras klasėmis
+\end{DoxyItemize}
+
+{\bfseries{Programos veikimo laikai, naudojant efektyviausią strategiją ir konteinerį\+:}}
+
+{\itshape laikai atvaizduoti milisekundėmis}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 įrašų }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 įrašų  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 įrašų }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 įrašų  }\\\cline{1-3}
+\endhead
+\PBS\centering Struktūros &\PBS\centering 2138 &\PBS\centering 22 363  \\\cline{1-3}
+\PBS\centering Klasės &\PBS\centering 2154 &\PBS\centering 21 916  \\\cline{1-3}
+\end{longtabu}
+
+
+{\bfseries{Programos veikimo laikai naudojant skirtingus optimizavimo flag\textquotesingle{}us\+:}}
+
+{\itshape laikai atvaizduoti milisekundėmis}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 įrašų }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 įrašų  }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100 000 įrašų }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1 000 000 įrašų  }\\\cline{1-3}
+\endhead
+\PBS\centering O1 &\PBS\centering 1 769 &\PBS\centering 18 267  \\\cline{1-3}
+\PBS\centering O2 &\PBS\centering 1 569 &\PBS\centering 16 001  \\\cline{1-3}
+\PBS\centering O3 &\PBS\centering 1 616 &\PBS\centering 16 436  \\\cline{1-3}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysection{Naudojimosi instrukcija\+:}\label{md__r_e_a_d_m_e_autotoc_md10}
+
+\begin{DoxyEnumerate}
+\item Atsidarę šį puslapį, spauskite \char`\"{}\+Clone or Download\char`\"{} mygtuką, kad parsisiųstumėte programą
+\item Parsisiuntę Zip failą, išarchyvuokite jį sau patogiu įrankiu
+\item Atsidarykite komandinės eilutės įrankį ir nueikite į išarchyvuotą aplanką
+\item Išarchyvuotame aplanke naudokite šią komandą, kad paruoštumėte programą naudojimui\+:
+\begin{DoxyItemize}
+\item {\bfseries{make}}
+\end{DoxyItemize}
+\item Naudokite šią komandą programos paleidimui\+:
+\begin{DoxyItemize}
+\item {\bfseries{make run}}
+\end{DoxyItemize}
+\item Komanda skirta aplanko išvalymui\+:
+\begin{DoxyItemize}
+\item {\bfseries{make clear}} 
+\end{DoxyItemize}
+\end{DoxyEnumerate}
