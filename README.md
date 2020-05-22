@@ -154,6 +154,7 @@ c
   * Pratestuota skaitmenu skaiciavimo funkcija
 * Papildytas README.md
 
+
 ## Diegimo instrukcija:
 1. Atsidarę šį puslapį, spauskite "Clone or Download" mygtuką, kad parsisiųstumėte programą
 2. Parsisiuntę Zip failą, išarchyvuokite jį sau patogiu įrankiu
@@ -170,7 +171,6 @@ c
   * Komanda, skirta programos testavimui:
     * **make run_test**
 
-*
 
 ## Naudojimosi instrukcija:
 1. Komanda - "make run" - paleiskite programą
