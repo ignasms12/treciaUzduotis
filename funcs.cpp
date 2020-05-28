@@ -213,7 +213,7 @@ void Studentas :: input() {
 			if( nd_rezultatas[indeksas] > 10 ||  nd_rezultatas[indeksas] < 0){
 				throw nd_rezultatas[indeksas];
 			}
-			else{
+			else{ 
 				indeksas++;
 			}
 		}
@@ -268,7 +268,7 @@ void Studentas :: galutinioSkaiciavimas(int porankis){
 
 //Palyginimo funkcija skirta studentu irasu rusiavimui pagal varda ir pavarde
 bool comparation(Studentas &a, Studentas &b){
-	return (a.vardas() < b.vardas() || (a.vardas() == b.vardas() && a.pavarde() < b.pavarde()));
+	return (a.get_vardas() < b.get_vardas() || (a.get_vardas() == b.get_vardas() && a.get_pavarde() < b.get_pavarde()));
 }
 
 //Funkcija skirta atskirti studentu irasus pagal Galutini Bala i dvi atskiras dalis 
@@ -276,12 +276,12 @@ void splitOutput(std::vector<Studentas> &vektoriux, std::vector<Studentas> &kiet
 	int count = 0;
 	int kitasCount = 0;
 	for(int k=0; k<vektoriux.size(); k++){
-		if(vektoriux[k].final() >= 5){
+		if(vektoriux[k].get_final() >= 5){
 			kietekai.push_back(Studentas());
 			kietekai[count] = vektoriux[k];
 			count++;
 		}
-		else if(vektoriux[k].final() < 5){
+		else if(vektoriux[k].get_final() < 5){
 			vargsiukai.push_back(Studentas());
 			vargsiukai[kitasCount] = vektoriux[k];
 			kitasCount++;
@@ -324,10 +324,10 @@ void print(std::vector<Studentas> printeris, std::vector<Studentas> vargsiukai, 
 		for(int sup=0; sup < printeris.size(); sup++) {
 			std::cout << std::endl;
 			std::cout.width(15);
-			std::cout << std::left << printeris[sup].vardas();
+			std::cout << std::left << printeris[sup].get_vardas();
 			std::cout.width(20);
-			std::cout << std::left << printeris[sup].pavarde();
-			std::cout << std::fixed << std::setprecision(2) << printeris[sup].final() << std::endl;
+			std::cout << std::left << printeris[sup].get_pavarde();
+			std::cout << std::fixed << std::setprecision(2) << printeris[sup].get_final() << std::endl;
 		}
 
 	}
@@ -354,10 +354,10 @@ void print(std::vector<Studentas> printeris, std::vector<Studentas> vargsiukai, 
 		for(int sup=0; sup < vargsiukai.size(); sup++) {
 			std::cout << std::endl;
 			std::cout.width(15);
-			std::cout << std::left << vargsiukai[sup].vardas();
+			std::cout << std::left << vargsiukai[sup].get_vardas();
 			std::cout.width(20);
-			std::cout << std::left << vargsiukai[sup].pavarde();
-			std::cout << std::fixed << std::setprecision(2) << vargsiukai[sup].final() << std::endl;
+			std::cout << std::left << vargsiukai[sup].get_pavarde();
+			std::cout << std::fixed << std::setprecision(2) << vargsiukai[sup].get_final() << std::endl;
 		}
 		std::cout<< std::endl;
 		std::cout<< std::endl;
@@ -384,10 +384,10 @@ void print(std::vector<Studentas> printeris, std::vector<Studentas> vargsiukai, 
 		for(int sup=0; sup < kietekai.size(); sup++) { 
 			std::cout << std::endl;
 			std::cout.width(15);
-			std::cout << std::left << kietekai[sup].vardas();
+			std::cout << std::left << kietekai[sup].get_vardas();
 			std::cout.width(20);
-			std::cout << std::left << kietekai[sup].pavarde();
-			std::cout << std::fixed << std::setprecision(2) << kietekai[sup].final() << std::endl;
+			std::cout << std::left << kietekai[sup].get_pavarde();
+			std::cout << std::fixed << std::setprecision(2) << kietekai[sup].get_final() << std::endl;
 	}
 
 	}
@@ -439,37 +439,37 @@ void outputToFile(std::vector<Studentas> kiec,std::vector<Studentas> vargs, int 
 			
 				kietekai << std::endl;
 				kietekai.width(15);
-				kietekai << std::left << kiec[sup].vardas();
+				kietekai << std::left << kiec[sup].get_vardas();
 				kietekai.width(20);
-				kietekai << std::left << kiec[sup].pavarde();
-				kietekai << std::fixed << std::setprecision(2) << kiec[sup].final() << std::endl;
+				kietekai << std::left << kiec[sup].get_pavarde();
+				kietekai << std::fixed << std::setprecision(2) << kiec[sup].get_final() << std::endl;
 		}
 		for(int b=0; b<vargs.size(); b++){
 				vargsiukai << std::endl;
 				vargsiukai.width(15);
-				vargsiukai << std::left << vargs[b].vardas();
+				vargsiukai << std::left << vargs[b].get_vardas();
 				vargsiukai.width(20);
-				vargsiukai << std::left << vargs[b].pavarde();
-				vargsiukai << std::fixed << std::setprecision(2) << vargs[b].final() << std::endl;
+				vargsiukai << std::left << vargs[b].get_pavarde();
+				vargsiukai << std::fixed << std::setprecision(2) << vargs[b].get_final() << std::endl;
 		}
 }
 
 //Funkcija skirta nuskaityti studentu duomenis is failo
-void readFile(std::vector<Studentas> &printeris, int k, int pasirinkimas){
+void readFile(std::vector<Studentas> &printeris, int k, int pasirinkimas, std::string file){
 		
 	std::string Value = "";
 	int count = 0;
-	std::ifstream failas("kursiokai.txt");
+	std::ifstream failas(file);
 	
 
 	try{
 			failas.exceptions(std::ifstream::failbit);
 	}
 	catch(std::ios_base::failure& fail){
-			std::cerr <<"\n Failas -  kursiokai.txt  - nerastas; ikelkite faila i programos vykdymo aplanka ir paspauskite Enter mygtuka"; 
+			std::cerr <<"\n Failas - "<< file <<" - nerastas; ikelkite faila i programos vykdymo aplanka ir paspauskite Enter mygtuka"; 
 			std::cin.ignore();
 			std::cin.get();
-			readFile(printeris, k, pasirinkimas);
+			readFile(printeris, k, pasirinkimas, file);
 	}
 	
 	failas >> Value >> Value >> Value;
@@ -534,8 +534,9 @@ void ivedimoBudas(std::vector<Studentas> &printeris, int &pasirinkimas, int k, i
 	}
 
 	else if(ivestiesBudas_int == 1){
+		std::string fileName = "kursiokai.txt";
 		auto startas = std::chrono::steady_clock::now( );
-		readFile(printeris, k, pasirinkimas);
+		readFile(printeris, k, pasirinkimas, fileName);
 		auto finisas = std::chrono::duration_cast<std::chrono::milliseconds>( std::chrono::steady_clock::now( ) - startas );
 		std::cout << std::endl;
 		std::cout << "Nuskaitymas is failo uztruko: " << finisas.count() << " ms" << std::endl;
